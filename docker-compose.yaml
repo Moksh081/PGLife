@@ -9,7 +9,8 @@ services:
       - pgdb
     volumes:
       - .:/var/www/html
-      - ./apache_logs:/var/log/apache2
+      # - ./uploads:/var/www/html/uploads
+    #   - ./apache_logs:/var/log/apache2
 
   pgdb:
     image: mysql:8.2.0

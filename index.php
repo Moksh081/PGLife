@@ -20,7 +20,7 @@ session_start();
     include "includes/header.php";
     ?>
 
-    <div class="banner-container">
+    <div class="banner-container" style="background-image: url('https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656825/bg2_mv6vqu.png');">
         <h2 class="white pb-3">Happiness per Square Foot</h2>
 
         <form id="search-form" action="property_list.php" method="GET">
@@ -43,7 +43,7 @@ session_start();
             <div class="city-card-container col-md">
                 <a href="property_list.php?city=Delhi">
                     <div class="city-card rounded-circle">
-                        <img src="img/delhi.png" class="city-img" />
+                        <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656822/delhi_wxy2bk.png" class="city-img" />
                     </div>
                 </a>
             </div>
@@ -51,7 +51,7 @@ session_start();
             <div class="city-card-container col-md">
                 <a href="property_list.php?city=Mumbai">
                     <div class="city-card rounded-circle">
-                        <img src="img/mumbai.png" class="city-img" />
+                        <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656819/mumbai_usntlh.png" class="city-img" />
                     </div>
                 </a>
             </div>
@@ -59,7 +59,7 @@ session_start();
             <div class="city-card-container col-md">
                 <a href="property_list.php?city=Bengaluru">
                     <div class="city-card rounded-circle">
-                        <img src="img/bangalore.png" class="city-img" />
+                        <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656825/bangalore_jchgye.png" class="city-img" />
                     </div>
                 </a>
             </div>
@@ -67,7 +67,7 @@ session_start();
             <div class="city-card-container col-md">
                 <a href="property_list.php?city=Hyderabad">
                     <div class="city-card rounded-circle">
-                        <img src="img/hyderabad.png" class="city-img" />
+                        <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656818/hyderabad_uxs2m6.png" class="city-img" />
                     </div>
                 </a>
             </div>

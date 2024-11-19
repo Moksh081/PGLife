@@ -136,15 +136,15 @@ $interested_properties = mysqli_fetch_all($result_2, MYSQLI_ASSOC);
                                     <?php
                                     if ($property['gender'] == "male") {
                                     ?>
-                                        <img src="img/male.png">
+                                        <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656818/male_i807mb.png">
                                     <?php
                                     } elseif ($property['gender'] == "female") {
                                     ?>
-                                        <img src="img/female.png">
+                                        <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656819/female_o3iekq.png">
                                     <?php
                                     } else {
                                     ?>
-                                        <img src="img/unisex.png">
+                                        <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656818/unisex_tihht9.png">
                                     <?php
                                     }
                                     ?>

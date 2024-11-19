@@ -71,15 +71,15 @@ $interested_users_properties = mysqli_fetch_all($result_3, MYSQLI_ASSOC);
     <div class="page-container">
         <div class="filter-bar row justify-content-around">
             <div class="col-auto" data-toggle="modal" data-target="#filter-modal">
-                <img src="img/filter.png" alt="filter" />
+                <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656819/filter_spclm8.png" alt="filter" />
                 <span>Filter</span>
             </div>
             <div class="col-auto">
-                <img src="img/desc.png" alt="sort-desc" />
+                <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656822/desc_kygfqd.png" alt="sort-desc" />
                 <span>Highest rent first</span>
             </div>
             <div class="col-auto">
-                <img src="img/asc.png" alt="sort-asc" />
+                <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656825/asc_mr7v3d.png" alt="sort-asc" />
                 <span>Lowest rent first</span>
             </div>
         </div>

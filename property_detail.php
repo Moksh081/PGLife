@@ -173,15 +173,15 @@ $interested_users_count = mysqli_num_rows($result_4);
                 <?php
                 if ($property['gender'] == "male") {
                 ?>
-                    <img src="img/male.png">
+                    <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656818/male_i807mb.png">
                 <?php
                 } elseif ($property['gender'] == "female") {
                 ?>
-                    <img src="img/female.png">
+                    <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656819/female_o3iekq.png">
                 <?php
                 } else {
                 ?>
-                    <img src="img/unisex.png">
+                    <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656818/unisex_tihht9.png">
                 <?php
                 }
                 ?>
@@ -241,7 +241,7 @@ $interested_users_count = mysqli_num_rows($result_4);
                         if ($amenity['type'] == "Bedroom") {
                     ?>
                             <div class="amenity-container">
-                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
+                                <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731657299/<?= $amenity['icon'] ?>.svg">
                                 <span><?= $amenity['name'] ?></span>
                             </div>
                     <?php
@@ -401,7 +401,7 @@ $interested_users_count = mysqli_num_rows($result_4);
         ?>
             <div class="testimonial-block">
                 <div class="testimonial-image-container">
-                    <img class="testimonial-img" src="img/man.png">
+                    <img class="testimonial-img" src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656818/man_j0nr3u.jpg">
                 </div>
                 <div class="testimonial-text">
                     <i class="fa fa-quote-left" aria-hidden="true"></i>

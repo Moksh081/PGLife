@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 22, 2024 at 08:15 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: pgdb
+-- Generation Time: Nov 19, 2024 at 03:52 PM
+-- Server version: 8.2.0
+-- PHP Version: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `amenities` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -60,8 +60,8 @@ INSERT INTO `amenities` (`id`, `name`, `type`, `icon`) VALUES
 --
 
 CREATE TABLE `cities` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -81,9 +81,9 @@ INSERT INTO `cities` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `interested_users_properties` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `property_id` int(11) DEFAULT NULL
+  `id` int NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `property_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -110,29 +110,27 @@ INSERT INTO `interested_users_properties` (`id`, `user_id`, `property_id`) VALUE
 --
 
 CREATE TABLE `properties` (
-  `id` int(11) NOT NULL,
-  `city_id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `gender` varchar(255) DEFAULT NULL,
-  `rent` float DEFAULT NULL,
-  `rating_clean` float DEFAULT NULL,
-  `rating_food` float DEFAULT NULL,
-  `rating_safety` float DEFAULT NULL,
-  `images` text DEFAULT NULL
+  `id` int NOT NULL,
+  `city_id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `rent` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `properties`
 --
 
-INSERT INTO `properties` (`id`, `city_id`, `name`, `address`, `description`, `gender`, `rent`, `rating_clean`, `rating_food`, `rating_safety`, `images`) VALUES
-(1, 1, 'Saxena\'s Paying Guest', 'H.No. 3958 Kaseru Walan, Pahar Ganj, New Delhi, Delhi 110055', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'male', 5000, 4.3, 3.4, 4.8, NULL),
-(2, 1, 'Navrang PG Home', '644-C,Mohalla Baoli 6 Tooti Chowk, Paharganj, New Delhi, Delhi 110055', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'unisex', 6000, 2.9, 3.4, 3.8, NULL),
-(3, 2, 'Navkar Paying Guest', '44, Juhu Scheme, Juhu, Mumbai, Maharashtra 400058', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'female', 9500, 3.9, 3.8, 4.9, NULL),
-(4, 2, 'PG for Girls Borivali West', 'Plot no.258/D4, Gorai no.2, Borivali West, Mumbai, Maharashtra 400092', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'female', 8000, 4.2, 4.1, 4.5, NULL),
-(5, 2, 'Ganpati Paying Guest', 'Police Beat, Sainath Complex, Besides, SV Rd, Daulat Nagar, Borivali East, Mumbai - 400066', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'male', 8500, 4.2, 3.9, 4.6, NULL);
+INSERT INTO `properties` (`id`, `city_id`, `name`, `address`, `description`, `gender`, `rent`) VALUES
+(1, 1, 'Saxena\'s Paying Guest', 'H.No. 3958 Kaseru Walan, Pahar Ganj, New Delhi, Delhi 110055', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'male', 5000),
+(2, 1, 'Navrang PG Home', '644-C,Mohalla Baoli 6 Tooti Chowk, Paharganj, New Delhi, Delhi 110055', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'unisex', 6000),
+(3, 2, 'Navkar Paying Guest', '44, Juhu Scheme, Juhu, Mumbai, Maharashtra 400058', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'female', 9500),
+(4, 2, 'PG for Girls Borivali West', 'Plot no.258/D4, Gorai no.2, Borivali West, Mumbai, Maharashtra 400092', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'female', 8000),
+(5, 2, 'Ganpati Paying Guest', 'Police Beat, Sainath Complex, Besides, SV Rd, Daulat Nagar, Borivali East, Mumbai - 400066', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'male', 8500),
+(6, 111111, 'qqq', 'www', 'ee', 'Male', 333),
+(7, 111111, 'qqq', 'www', 'ee', 'Male', 333);
 
 -- --------------------------------------------------------
 
@@ -141,9 +139,9 @@ INSERT INTO `properties` (`id`, `city_id`, `name`, `address`, `description`, `ge
 --
 
 CREATE TABLE `properties_amenities` (
-  `id` int(11) NOT NULL,
-  `property_id` int(11) DEFAULT NULL,
-  `amenity_id` int(11) DEFAULT NULL
+  `id` int NOT NULL,
+  `property_id` int DEFAULT NULL,
+  `amenity_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -202,7 +200,24 @@ INSERT INTO `properties_amenities` (`id`, `property_id`, `amenity_id`) VALUES
 (49, 5, 10),
 (50, 5, 11),
 (51, 5, 12),
-(52, 5, 13);
+(52, 5, 13),
+(55, 7, 2),
+(56, 7, 10),
+(57, 7, 13);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prop_rating`
+--
+
+CREATE TABLE `prop_rating` (
+  `id` int NOT NULL,
+  `clean` int NOT NULL,
+  `food` int NOT NULL,
+  `safety` int NOT NULL,
+  `prop_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -211,10 +226,10 @@ INSERT INTO `properties_amenities` (`id`, `property_id`, `amenity_id`) VALUES
 --
 
 CREATE TABLE `testimonials` (
-  `id` int(11) NOT NULL,
-  `property_id` int(11) NOT NULL,
-  `user_name` varchar(255) DEFAULT NULL,
-  `content` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `property_id` int NOT NULL,
+  `user_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `content` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -240,13 +255,13 @@ INSERT INTO `testimonials` (`id`, `property_id`, `user_name`, `content`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `PASSWORD` varchar(255) DEFAULT NULL,
-  `full_name` varchar(255) DEFAULT NULL,
-  `phone` int(11) DEFAULT NULL,
-  `gender` varchar(255) DEFAULT NULL,
-  `college_name` varchar(255) DEFAULT NULL
+  `id` int NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `PASSWORD` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `full_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone` int DEFAULT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `college_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -259,7 +274,8 @@ INSERT INTO `users` (`id`, `email`, `PASSWORD`, `full_name`, `phone`, `gender`, 
 (3, 'aditya@gmail.com', '1234567890', 'Aditya Sood', 2147483647, 'male', 'Chandigarh University'),
 (4, 'radhika@gmail.com', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'Radhika Bhatia', 2147483647, 'female', 'Delhi University'),
 (13, 'ksobti18@thapar.edu', 'ac990ed1b6d343d5cc725a701466363e7357a2ee', 'kanav sobti', 904176128, 'female', 'thapar patiala'),
-(14, 'nmsax ', 'bf758b82e2bfe6d584136cd029f7b1f5926beccd', 'sjnksa', 0, '', '');
+(14, 'nmsax ', 'bf758b82e2bfe6d584136cd029f7b1f5926beccd', 'sjnksa', 0, '', ''),
+(15, 'QPQP@QPQP.QPQP', 'b1285d4b43914cc9980ff65d3f54031d0f908e72', 'qq', 1010101010, 'male', 'www');
 
 --
 -- Indexes for dumped tables
@@ -300,6 +316,13 @@ ALTER TABLE `properties_amenities`
   ADD KEY `property_id` (`property_id`);
 
 --
+-- Indexes for table `prop_rating`
+--
+ALTER TABLE `prop_rating`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `prop_id` (`prop_id`);
+
+--
 -- Indexes for table `testimonials`
 --
 ALTER TABLE `testimonials`
@@ -319,43 +342,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `amenities`
 --
 ALTER TABLE `amenities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `interested_users_properties`
 --
 ALTER TABLE `interested_users_properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `properties_amenities`
 --
 ALTER TABLE `properties_amenities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `prop_rating`
+--
+ALTER TABLE `prop_rating`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
@@ -380,6 +409,12 @@ ALTER TABLE `interested_users_properties`
 ALTER TABLE `properties_amenities`
   ADD CONSTRAINT `properties_amenities_ibfk_1` FOREIGN KEY (`amenity_id`) REFERENCES `amenities` (`id`),
   ADD CONSTRAINT `properties_amenities_ibfk_2` FOREIGN KEY (`property_id`) REFERENCES `properties` (`id`);
+
+--
+-- Constraints for table `prop_rating`
+--
+ALTER TABLE `prop_rating`
+  ADD CONSTRAINT `propid` FOREIGN KEY (`prop_id`) REFERENCES `properties` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

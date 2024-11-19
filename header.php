@@ -1,7 +1,7 @@
 <div class="header sticky-top">
         <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="index.html">
-                <img src="img/logo.png" />
+                <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731657033/svgviewer-png-output_2_ux3num.png" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#my-navbar">
                 <span class="navbar-toggler-icon"></span>
