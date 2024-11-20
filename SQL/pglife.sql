@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: pgdb
--- Generation Time: Nov 19, 2024 at 03:52 PM
+-- Generation Time: Nov 20, 2024 at 02:45 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.8
 
@@ -72,7 +72,8 @@ INSERT INTO `cities` (`id`, `name`) VALUES
 (1, 'Delhi'),
 (2, 'Mumbai'),
 (3, 'Bengaluru'),
-(4, 'Hyderabad');
+(4, 'Hyderabad'),
+(111111, 'qqq');
 
 -- --------------------------------------------------------
 
@@ -116,21 +117,24 @@ CREATE TABLE `properties` (
   `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `gender` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `rent` float DEFAULT NULL
+  `rent` float DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  `approved` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `properties`
 --
 
-INSERT INTO `properties` (`id`, `city_id`, `name`, `address`, `description`, `gender`, `rent`) VALUES
-(1, 1, 'Saxena\'s Paying Guest', 'H.No. 3958 Kaseru Walan, Pahar Ganj, New Delhi, Delhi 110055', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'male', 5000),
-(2, 1, 'Navrang PG Home', '644-C,Mohalla Baoli 6 Tooti Chowk, Paharganj, New Delhi, Delhi 110055', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'unisex', 6000),
-(3, 2, 'Navkar Paying Guest', '44, Juhu Scheme, Juhu, Mumbai, Maharashtra 400058', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'female', 9500),
-(4, 2, 'PG for Girls Borivali West', 'Plot no.258/D4, Gorai no.2, Borivali West, Mumbai, Maharashtra 400092', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'female', 8000),
-(5, 2, 'Ganpati Paying Guest', 'Police Beat, Sainath Complex, Besides, SV Rd, Daulat Nagar, Borivali East, Mumbai - 400066', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'male', 8500),
-(6, 111111, 'qqq', 'www', 'ee', 'Male', 333),
-(7, 111111, 'qqq', 'www', 'ee', 'Male', 333);
+INSERT INTO `properties` (`id`, `city_id`, `name`, `address`, `description`, `gender`, `rent`, `user_id`, `approved`) VALUES
+(1, 1, 'Saxena\'s Paying Guest', 'H.No. 3958 Kaseru Walan, Pahar Ganj, New Delhi, Delhi 110055', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'male', 5000, NULL, 0),
+(2, 1, 'Navrang PG Home', '644-C,Mohalla Baoli 6 Tooti Chowk, Paharganj, New Delhi, Delhi 110055', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'unisex', 6000, NULL, 0),
+(3, 2, 'Navkar Paying Guest', '44, Juhu Scheme, Juhu, Mumbai, Maharashtra 400058', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'female', 9500, NULL, 0),
+(4, 2, 'PG for Girls Borivali West', 'Plot no.258/D4, Gorai no.2, Borivali West, Mumbai, Maharashtra 400092', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'female', 8000, NULL, 0),
+(5, 2, 'Ganpati Paying Guest', 'Police Beat, Sainath Complex, Besides, SV Rd, Daulat Nagar, Borivali East, Mumbai - 400066', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'male', 8500, NULL, 0),
+(6, 111111, 'qqq', 'www', 'ee', 'Male', 333, NULL, 0),
+(7, 111111, 'qqq', 'www', 'ee', 'Male', 333, NULL, 0),
+(8, 111111, 'qqq', 'www', 'eee', 'Male', 333, 15, 0);
 
 -- --------------------------------------------------------
 
@@ -203,7 +207,9 @@ INSERT INTO `properties_amenities` (`id`, `property_id`, `amenity_id`) VALUES
 (52, 5, 13),
 (55, 7, 2),
 (56, 7, 10),
-(57, 7, 13);
+(57, 7, 13),
+(58, 8, 1),
+(59, 8, 9);
 
 -- --------------------------------------------------------
 
@@ -261,21 +267,22 @@ CREATE TABLE `users` (
   `full_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `phone` int DEFAULT NULL,
   `gender` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `college_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `college_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type` enum('buyer','lender') COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `PASSWORD`, `full_name`, `phone`, `gender`, `college_name`) VALUES
-(1, 'anuj.kalbalia@gmail.com', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'Anuj Kalbalia', 2147483647, 'male', 'NITD'),
-(2, 'shadab@gmail.com', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'Shadab Alam', 2147483647, 'male', 'NITJ'),
-(3, 'aditya@gmail.com', '1234567890', 'Aditya Sood', 2147483647, 'male', 'Chandigarh University'),
-(4, 'radhika@gmail.com', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'Radhika Bhatia', 2147483647, 'female', 'Delhi University'),
-(13, 'ksobti18@thapar.edu', 'ac990ed1b6d343d5cc725a701466363e7357a2ee', 'kanav sobti', 904176128, 'female', 'thapar patiala'),
-(14, 'nmsax ', 'bf758b82e2bfe6d584136cd029f7b1f5926beccd', 'sjnksa', 0, '', ''),
-(15, 'QPQP@QPQP.QPQP', 'b1285d4b43914cc9980ff65d3f54031d0f908e72', 'qq', 1010101010, 'male', 'www');
+INSERT INTO `users` (`id`, `email`, `PASSWORD`, `full_name`, `phone`, `gender`, `college_name`, `type`) VALUES
+(1, 'anuj.kalbalia@gmail.com', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'Anuj Kalbalia', 2147483647, 'male', 'NITD', 'buyer'),
+(2, 'shadab@gmail.com', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'Shadab Alam', 2147483647, 'male', 'NITJ', 'buyer'),
+(3, 'aditya@gmail.com', '1234567890', 'Aditya Sood', 2147483647, 'male', 'Chandigarh University', 'buyer'),
+(4, 'radhika@gmail.com', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'Radhika Bhatia', 2147483647, 'female', 'Delhi University', 'buyer'),
+(13, 'ksobti18@thapar.edu', 'ac990ed1b6d343d5cc725a701466363e7357a2ee', 'kanav sobti', 904176128, 'female', 'thapar patiala', 'buyer'),
+(14, 'nmsax ', 'bf758b82e2bfe6d584136cd029f7b1f5926beccd', 'sjnksa', 0, '', '', 'buyer'),
+(15, 'QPQP@QPQP.QPQP', 'b1285d4b43914cc9980ff65d3f54031d0f908e72', 'qq', 1010101010, 'male', 'www', 'buyer');
 
 --
 -- Indexes for dumped tables
@@ -305,7 +312,8 @@ ALTER TABLE `interested_users_properties`
 -- Indexes for table `properties`
 --
 ALTER TABLE `properties`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `properties_amenities`
@@ -348,7 +356,7 @@ ALTER TABLE `amenities`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111112;
 
 --
 -- AUTO_INCREMENT for table `interested_users_properties`
@@ -360,13 +368,13 @@ ALTER TABLE `interested_users_properties`
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `properties_amenities`
 --
 ALTER TABLE `properties_amenities`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `prop_rating`
@@ -391,17 +399,17 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `cities`
---
-ALTER TABLE `cities`
-  ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`id`) REFERENCES `properties` (`id`);
-
---
 -- Constraints for table `interested_users_properties`
 --
 ALTER TABLE `interested_users_properties`
   ADD CONSTRAINT `interested_users_properties_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `interested_users_properties_ibfk_2` FOREIGN KEY (`property_id`) REFERENCES `properties` (`id`);
+
+--
+-- Constraints for table `properties`
+--
+ALTER TABLE `properties`
+  ADD CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `properties_amenities`

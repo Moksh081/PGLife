@@ -4,6 +4,22 @@ require "includes/database_connect.php";
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
 $city_name = $_GET["city"];
+
+// $city_filter = isset($_GET['city_id']) ? (int)$_GET['city_id'] : 0;
+$sort_order = isset($_GET['sort']) && in_array($_GET['sort'], ['asc', 'desc']) ? $_GET['sort'] : 'asc';
+
+$query = "SELECT p.id, p.name, c.name AS city_name, p.address, p.description, p.gender, p.rent, p.user_id, p.approved 
+          FROM properties p 
+          JOIN cities c ON p.city_id = c.id 
+          WHERE p.approved = 1 AND c.name = ?";
+
+$query .= " ORDER BY p.rent $sort_order";
+$stmt = $conn->prepare($query);
+
+$stmt->bind_param("i",$city_name );
+
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -36,108 +52,83 @@ $city_name = $_GET["city"];
     </nav>
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
+    <!-- < id="root"> -->
 
-    </div>
+</div>
 
-    <?php
+        <div class="page-container">
+            <!-- Filter Bar -->
+            <div class="filter-bar row justify-content-around">
+                <div class="col-auto sort-active" data-toggle="modal" data-target="#filter-modal">
+                    <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656819/filter_spclm8.png" alt="filter">
+                    <span>Filter</span>
+                </div>
+                <div class="col-auto" onclick="window.location.href='?sort=desc'">
+                    <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656822/desc_kygfqd.png" alt="sort-desc">
+                    <span>Highest rent first</span>
+                </div>
+                <div class="col-auto" onclick="window.location.href='?sort=asc'">
+                    <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656825/asc_mr7v3d.png" alt="sort-asc">
+                    <span>Lowest rent first</span>
+                </div>
+            </div>
+
+            <!-- Properties List -->
+            <?php if ($result->num_rows > 0): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="property-card property-id-<?php echo $row['id']; ?> row">
+                        <div class="image-container col-md-4">
+                            <img src="./uploads/<?php echo $row['user_id']; ?>/<?php echo $row['id']; ?>/main.jpg" alt="property">
+                        </div>
+                        <div class="content-container col-md-8">
+                            <div class="row no-gutters justify-content-between">
+                                <div class="star-container" title="4.5">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <div class="interested-container">
+                                    <i class="is-interested-image far fa-heart" onclick="toggleInterested(<?php echo $row['id']; ?>)"></i>
+                                    <div class="interested-text">
+                                        <span class="interested-user-count">10</span> interested
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail-container">
+                                <div class="property-name"><?php echo htmlspecialchars($row['name']); ?></div>
+                                <div class="property-address"><?php echo htmlspecialchars($row['address']); ?></div>
+                                <div class="property-gender">
+                                    <img src="./img/<?php echo $row['gender'] === 'male' ? 'male.png' : ($row['gender'] === 'female' ? 'female.png' : 'unisex.png'); ?>" alt="gender">
+                                </div>
+                            </div>
+                            <div class="row no-gutters">
+                                <div class="rent-container col-6">
+                                    <div class="rent">₹ <?php echo number_format($row['rent']); ?>/-</div>
+                                    <div class="rent-unit">per month</div>
+                                </div>
+                                <div class="button-container col-6">
+                                    <a href="property_detail.php?property_id=<?php echo $row['id']; ?>" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <div class="no-property-container">
+                    <p>No PG to list</p>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <?php
     include "includes/signup_modal.php";
     include "includes/login_modal.php";
     include "includes/footer.php";
+    $stmt->close();
+$conn->close();
     ?>
-
-    <script>
-      !(function (e) {
-        function r (r) {
-          for (
-            var n, a, p = r[0], l = r[1], f = r[2], c = 0, s = [];
-            c < p.length;
-            c++
-          )
-            (a = p[c]),
-              Object.prototype.hasOwnProperty.call(o, a) &&
-                o[a] &&
-                s.push(o[a][0]),
-              (o[a] = 0)
-          for (n in l)
-            Object.prototype.hasOwnProperty.call(l, n) && (e[n] = l[n])
-          for (i && i(r); s.length; ) s.shift()()
-          return u.push.apply(u, f || []), t()
-        }
-        function t () {
-          for (var e, r = 0; r < u.length; r++) {
-            for (var t = u[r], n = !0, p = 1; p < t.length; p++) {
-              var l = t[p]
-              0 !== o[l] && (n = !1)
-            }
-            n && (u.splice(r--, 1), (e = a((a.s = t[0]))))
-          }
-          return e
-        }
-        var n = {},
-          o = { 1: 0 },
-          u = []
-        function a (r) {
-          if (n[r]) return n[r].exports
-          var t = (n[r] = { i: r, l: !1, exports: {} })
-          return e[r].call(t.exports, t, t.exports, a), (t.l = !0), t.exports
-        }
-        ;(a.m = e),
-          (a.c = n),
-          (a.d = function (e, r, t) {
-            a.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t })
-          }),
-          (a.r = function (e) {
-            'undefined' != typeof Symbol &&
-              Symbol.toStringTag &&
-              Object.defineProperty(e, Symbol.toStringTag, { value: 'Module' }),
-              Object.defineProperty(e, '__esModule', { value: !0 })
-          }),
-          (a.t = function (e, r) {
-            if ((1 & r && (e = a(e)), 8 & r)) return e
-            if (4 & r && 'object' == typeof e && e && e.__esModule) return e
-            var t = Object.create(null)
-            if (
-              (a.r(t),
-              Object.defineProperty(t, 'default', { enumerable: !0, value: e }),
-              2 & r && 'string' != typeof e)
-            )
-              for (var n in e)
-                a.d(
-                  t,
-                  n,
-                  function (r) {
-                    return e[r]
-                  }.bind(null, n)
-                )
-            return t
-          }),
-          (a.n = function (e) {
-            var r =
-              e && e.__esModule
-                ? function () {
-                    return e.default
-                  }
-                : function () {
-                    return e
-                  }
-            return a.d(r, 'a', r), r
-          }),
-          (a.o = function (e, r) {
-            return Object.prototype.hasOwnProperty.call(e, r)
-          }),
-          (a.p = '/')
-        var p = (this['webpackJsonpreact-app'] =
-            this['webpackJsonpreact-app'] || []),
-          l = p.push.bind(p)
-        ;(p.push = r), (p = p.slice())
-        for (var f = 0; f < p.length; f++) r(p[f])
-        var i = l
-        t()
-      })([])
-    </script>
-    <script src="js/2.bb328bef.chunk.js"></script>
-    <script src="js/main.d86a88e7.chunk.js"></script>
 </body>
 
 </html>

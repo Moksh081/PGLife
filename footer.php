@@ -14,7 +14,7 @@
                     <a href="property_list.php?city=Hyderabad">PG in Hyderabad</a>
                 </div>
             </div>
-            <div class="footer-copyright">© Moksh PGLife</div>
+            <div class="footer-copyright">© PGLife</div>
         </div>
     </div>
 

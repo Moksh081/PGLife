@@ -41,9 +41,9 @@ session_start();
         </h1>
         <div class="row">
             <div class="city-card-container col-md">
-                <a href="property_list.php?city=Delhi">
+                <a href="property_list.php?city=Patiala&city_id=147201">
                     <div class="city-card rounded-circle">
-                        <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731656822/delhi_wxy2bk.png" class="city-img" />
+                        <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1732112643/patiala_pnbyjp.png" class="city-img" />
                     </div>
                 </a>
             </div>

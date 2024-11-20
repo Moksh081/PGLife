@@ -7,8 +7,8 @@ services:
       - "80:80"
     depends_on:
       - pgdb
-    volumes:
-      - .:/var/www/html
+    # volumes:
+    #   - .:/var/www/html
       # - ./uploads:/var/www/html/uploads
     #   - ./apache_logs:/var/log/apache2
 

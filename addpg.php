@@ -16,6 +16,10 @@
             <label for="city_id"> City PIN Code</label>
             <input type="number" id="city_id" name="city_id" required>
 
+            <!-- city name -->
+            <label for="city_name">City Name:</label>
+            <input type="text" id="city_name" name="city_name" required>
+
             <label for="address">Address:</label>
             <input type="text" id="address" name="address"required>
 
@@ -51,14 +55,14 @@
             <label for="rent">Rent (per month):</label>
             <input type="number" id="rent" name="rent" step="0.01" required>
 
-            <label for="rating_clean">Rating (Cleanliness):</label>
+            <!-- <label for="rating_clean">Rating (Cleanliness):</label>
             <input type="number" id="rating_clean" name="rating_clean" step="0.1" max="5" min="0" required>
 
             <label for="rating_food">Rating (Food):</label>
             <input type="number" id="rating_food" name="rating_food" step="0.1" max="5" min="0" required>
 
             <label for="rating_safety">Rating (Safety):</label>
-            <input type="number" id="rating_safety" name="rating_safety" step="0.1" max="5" min="0" required>
+            <input type="number" id="rating_safety" name="rating_safety" step="0.1" max="5" min="0" required> -->
 
             <label for="pg_images">PG Images:</label>
             <input type="file" id="pg_images" name="pg_images" multiple accept="image/*" required>

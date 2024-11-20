@@ -2,7 +2,7 @@
     <div class="page-container footer-container">
         <div class="footer-cities">
             <div class="footer-city">
-                <a href="property_list.php?city=Delhi">PG in Delhi</a>
+                <a href="property_list.php?city=Patiala">PG in Patiala</a>
             </div>
             <div class="footer-city">
                 <a href="property_list.php?city=Mumbai">PG in Mumbai</a>
