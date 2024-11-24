@@ -1,16 +1,16 @@
 <?php
-    $db_hostname = "127.0.0.1";
-    $db_username = "root";
-    $db_password = "";
-    $db_name = "pglife";
+    // $db_hostname = "127.0.0.1";
+    // $db_username = "root";
+    // $db_password = "";
+    // $db_name = "pglife";
     
-    $conn = mysqli_connect($db_hostname, $db_username, $db_password, $db_name);
-    if (!$conn) {
-        echo "Connection failed: " . mysqli_connect_error();
-        exit;
-    }
+    // $conn = mysqli_connect($db_hostname, $db_username, $db_password, $db_name);
+    // if (!$conn) {
+    //     echo "Connection failed: " . mysqli_connect_error();
+    //     exit;
+    // }
 
-
+    include "includes/database_connect.php";
     $full_name=$_POST['full_name'];
     $email=$_POST['email'];
     $password=$_POST['password'];
