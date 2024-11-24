@@ -8,6 +8,7 @@ $property_id = $_GET["property_id"];
 $sql_1 = "SELECT *, p.id AS property_id, p.name AS property_name, c.name AS city_name 
             FROM properties p
             INNER JOIN cities c ON p.city_id = c.id 
+            JOIN prop_rating pr ON p.id = pr.prop_id
             WHERE p.id = $property_id";
 $result_1 = mysqli_query($conn, $sql_1);
 if (!$result_1) {
@@ -119,7 +120,7 @@ $interested_users_count = mysqli_num_rows($result_4);
     <div class="property-summary page-container">
         <div class="row no-gutters justify-content-between">
             <?php
-            $total_rating = ($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3;
+            $total_rating = ($property['clean'] + $property['food'] + $property['safety']) / 3;
             $total_rating = round($total_rating, 1);
             ?>
             <div class="star-container" title="<?= $total_rating ?>">
@@ -209,7 +210,7 @@ $interested_users_count = mysqli_num_rows($result_4);
                         if ($amenity['type'] == "Building") {
                     ?>
                             <div class="amenity-container">
-                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
+                                <img src="./img/amenities/<?= $amenity['icon'] ?>.svg">
                                 <span><?= $amenity['name'] ?></span>
                             </div>
                     <?php
@@ -225,7 +226,7 @@ $interested_users_count = mysqli_num_rows($result_4);
                         if ($amenity['type'] == "Common Area") {
                     ?>
                             <div class="amenity-container">
-                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
+                                <img src="./img/amenities/<?= $amenity['icon'] ?>.svg">
                                 <span><?= $amenity['name'] ?></span>
                             </div>
                     <?php
@@ -241,7 +242,7 @@ $interested_users_count = mysqli_num_rows($result_4);
                         if ($amenity['type'] == "Bedroom") {
                     ?>
                             <div class="amenity-container">
-                                <img src="https://res.cloudinary.com/dcvyn4owv/image/upload/v1731657299/<?= $amenity['icon'] ?>.svg">
+                                <img src="./img/amenities/<?= $amenity['icon'] ?>.svg">
                                 <span><?= $amenity['name'] ?></span>
                             </div>
                     <?php
@@ -257,7 +258,7 @@ $interested_users_count = mysqli_num_rows($result_4);
                         if ($amenity['type'] == "Washroom") {
                     ?>
                             <div class="amenity-container">
-                                <img src="img/amenities/<?= $amenity['icon'] ?>.svg">
+                                <img src="./img/amenities/<?= $amenity['icon'] ?>.svg">
                                 <span><?= $amenity['name'] ?></span>
                             </div>
                     <?php
@@ -284,9 +285,9 @@ $interested_users_count = mysqli_num_rows($result_4);
                             <i class="rating-criteria-icon fas fa-broom"></i>
                             <span class="rating-criteria-text">Cleanliness</span>
                         </div>
-                        <div class="rating-criteria-star-container col-6" title="<?= $property['rating_clean'] ?>">
+                        <div class="rating-criteria-star-container col-6" title="<?= $property['clean'] ?>">
                             <?php
-                            $rating = $property['rating_clean'];
+                            $rating = $property['clean'];
                             for ($i = 0; $i < 5; $i++) {
                                 if ($rating >= $i + 0.8) {
                             ?>
@@ -311,9 +312,9 @@ $interested_users_count = mysqli_num_rows($result_4);
                             <i class="rating-criteria-icon fas fa-utensils"></i>
                             <span class="rating-criteria-text">Food Quality</span>
                         </div>
-                        <div class="rating-criteria-star-container col-6" title="<?= $property['rating_food'] ?>">
+                        <div class="rating-criteria-star-container col-6" title="<?= $property['food'] ?>">
                             <?php
-                            $rating = $property['rating_food'];
+                            $rating = $property['food'];
                             for ($i = 0; $i < 5; $i++) {
                                 if ($rating >= $i + 0.8) {
                             ?>
@@ -338,9 +339,9 @@ $interested_users_count = mysqli_num_rows($result_4);
                             <i class="rating-criteria-icon fa fa-lock"></i>
                             <span class="rating-criteria-text">Safety</span>
                         </div>
-                        <div class="rating-criteria-star-container col-6" title="<?= $property['rating_safety'] ?>">
+                        <div class="rating-criteria-star-container col-6" title="<?= $property['safety'] ?>">
                             <?php
-                            $rating = $property['rating_safety'];
+                            $rating = $property['safety'];
                             for ($i = 0; $i < 5; $i++) {
                                 if ($rating >= $i + 0.8) {
                             ?>
@@ -364,7 +365,7 @@ $interested_users_count = mysqli_num_rows($result_4);
                 <div class="col-md-4">
                     <div class="rating-circle">
                         <?php
-                        $total_rating = ($property['rating_clean'] + $property['rating_food'] + $property['rating_safety']) / 3;
+                        $total_rating = ($property['clean'] + $property['food'] + $property['safety']) / 3;
                         $total_rating = round($total_rating, 1);
                         ?>
                         <div class="total-rating"><?= $total_rating ?></div>
