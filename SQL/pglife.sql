@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: pgdb
--- Generation Time: Nov 20, 2024 at 02:45 PM
+-- Generation Time: Nov 24, 2024 at 01:31 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.8
 
@@ -73,7 +73,8 @@ INSERT INTO `cities` (`id`, `name`) VALUES
 (2, 'Mumbai'),
 (3, 'Bengaluru'),
 (4, 'Hyderabad'),
-(111111, 'qqq');
+(111111, 'qqq'),
+(147201, 'qwerty');
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,8 @@ INSERT INTO `properties` (`id`, `city_id`, `name`, `address`, `description`, `ge
 (5, 2, 'Ganpati Paying Guest', 'Police Beat, Sainath Complex, Besides, SV Rd, Daulat Nagar, Borivali East, Mumbai - 400066', 'Furnished studio apartment - share it with close friends! Located in posh area of Bijwasan in Delhi, this house is available for both boys and girls. Go for a private room or opt for a shared one and make it your own abode. Go out with your new friends - ', 'male', 8500, NULL, 0),
 (6, 111111, 'qqq', 'www', 'ee', 'Male', 333, NULL, 0),
 (7, 111111, 'qqq', 'www', 'ee', 'Male', 333, NULL, 0),
-(8, 111111, 'qqq', 'www', 'eee', 'Male', 333, 15, 0);
+(8, 111111, 'qqq', 'www', 'eee', 'Male', 333, 15, 0),
+(9, 147201, 'qazwsx', 'wwww', 'wwww', 'Male', 4444, 15, 1);
 
 -- --------------------------------------------------------
 
@@ -209,7 +211,10 @@ INSERT INTO `properties_amenities` (`id`, `property_id`, `amenity_id`) VALUES
 (56, 7, 10),
 (57, 7, 13),
 (58, 8, 1),
-(59, 8, 9);
+(59, 8, 9),
+(60, 9, 1),
+(61, 9, 2),
+(62, 9, 3);
 
 -- --------------------------------------------------------
 
@@ -224,6 +229,13 @@ CREATE TABLE `prop_rating` (
   `safety` int NOT NULL,
   `prop_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `prop_rating`
+--
+
+INSERT INTO `prop_rating` (`id`, `clean`, `food`, `safety`, `prop_id`) VALUES
+(1, 2, 3, 4, 9);
 
 -- --------------------------------------------------------
 
@@ -251,7 +263,7 @@ INSERT INTO `testimonials` (`id`, `property_id`, `user_name`, `content`) VALUES
 (6, 3, 'Mira Nair', 'You just have to arrive at the place, it\'s fully furnished and stocked with all basic amenities and services and even your friends are welcome.'),
 (7, 3, 'Meghna Gulzar', 'You just have to arrive at the place, it\'s fully furnished and stocked with all basic amenities and services and even your friends are welcome.'),
 (8, 4, 'Farah Khan', 'You just have to arrive at the place, it\'s fully furnished and stocked with all basic amenities and services and even your friends are welcome.'),
-(9, 5, 'Rajkumar Hirani', 'You just have to arrive at the place, it\'s fully furnished and stocked with all basic amenities and services and even your friends are welcome.'),
+(9, 9, 'Rajkumar Hirani', 'You just have to arrive at the place, it\'s fully furnished and stocked with all basic amenities and services and even your friends are welcome.'),
 (10, 5, 'Sanjay Leela Bhansali', 'You just have to arrive at the place, it\'s fully furnished and stocked with all basic amenities and services and even your friends are welcome.');
 
 -- --------------------------------------------------------
@@ -356,7 +368,7 @@ ALTER TABLE `amenities`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111112;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147202;
 
 --
 -- AUTO_INCREMENT for table `interested_users_properties`
@@ -368,19 +380,19 @@ ALTER TABLE `interested_users_properties`
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `properties_amenities`
 --
 ALTER TABLE `properties_amenities`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `prop_rating`
 --
 ALTER TABLE `prop_rating`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
